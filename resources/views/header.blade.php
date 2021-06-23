@@ -1,4 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+<?php
+
+    use App\Http\Controllers\ProductController;
+    $total = 0;
+    if(session('user'))
+    {
+        $total=ProductController::cart_item();
+
+    }
+?>
+<nav class="navbar navbar-expand-lg navbar-dark bg-warning p-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">H-Cart</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,9 +32,11 @@
       </ul>
       <ul class="navbar-nav">
       <li class="nav-item">
-          <a class="nav-link" href="#">Add To Cart</a>
+          <a class="nav-link" href="#">Add To Cart({{$total}})</a>
         </li>
       </ul>
+
+
 
     </div>
   </div>

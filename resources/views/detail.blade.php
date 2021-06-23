@@ -12,7 +12,7 @@
             <h5>Category : {{$data['category']}}</h5>
             <h5>Description : {{$data['description']}}</h5>
             <div class="order_btn mb-4 mt-4">
-            <form action="/add_to_cart" class="d-inline-block">
+            <form action="/add_to_cart" method="POST" class="d-inline-block">
                 <input type="hidden" name="product_id" value="{{$data['id']}}">
                 @csrf
                 <button class="btn btn-success">Add To Cart</button>

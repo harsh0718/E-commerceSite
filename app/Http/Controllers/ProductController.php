@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use App\Models\cart;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class ProductController extends Controller
 {
     function index()
@@ -27,6 +28,23 @@ class ProductController extends Controller
     }
     function cart(Request $rq)
     {
-        return "Hello Id Is ";
+        if($rq->session()->has('user'))
+        {
+            $cart = new cart;
+            $cart->user_id=$rq->session()->get('user')['id'];
+            $cart->product_id=$rq->product_id;
+            $cart->save();
+            return redirect('/');
+
+
+        }
+        else{
+            return redirect("/login");
+        }
+    }
+    static function cart_item()
+    {
+        $userid = Session::get('user')['id'];
+        return  cart::where('user_id',$userid)->count();
     }
 }
