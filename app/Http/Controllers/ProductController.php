@@ -25,4 +25,8 @@ class ProductController extends Controller
         $data = product::where('name','like','%'.$rq->input('search'). '%')->get();
         return View("search",["data"=>$data]);
     }
+    function cart(Request $rq)
+    {
+        return "Hello Id Is ";
+    }
 }
