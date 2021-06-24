@@ -8,7 +8,7 @@
 
     }
 ?>
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning p-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">H-Cart</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,20 +24,34 @@
         </li>
         <li>
             <form action="/search" method="GET" class="d-flex ps-lg-5">
-                <input class="form-control me-2 search_item" name="search" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2 search_item w-100" name="search" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </li>
-
       </ul>
       <ul class="navbar-nav">
-      <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="#">Add To Cart({{$total}})</a>
         </li>
+        @if (session('user'))
+        <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{session('user')['name']}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                  <!-- <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                </ul>
+        </li>
+        @else
+        <li class="ps-xl-5">
+          <a class="btn btn-light" href="/login">Login</a>
+        </li>
+        @endif
+
       </ul>
-
-
-
     </div>
   </div>
 </nav>

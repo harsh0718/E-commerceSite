@@ -47,4 +47,10 @@ class ProductController extends Controller
         $userid = Session::get('user')['id'];
         return  cart::where('user_id',$userid)->count();
     }
+
+    function logout(Request $rq)
+    {
+        $rq->session()->forget('user');
+        return redirect('/login');
+    }
 }
